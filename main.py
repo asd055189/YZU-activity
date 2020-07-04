@@ -21,7 +21,7 @@ for i in bs4.BeautifulSoup(Activitypage,'html.parser').select("a"):
         activitycode.append(num)
 for i in range(0,len(activitycode)) :
     index=HTTP.request("POST","https://portalx.yzu.edu.tw/PortalSocialVB/FPage/PageActivityDetail.aspx?Menu=Act&ActID="+activitycode[i],headers={"Cookie":"ASP.NET_SessionId="+portal_x_key,"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15"}).data.decode("utf-8")
-    if str(bs4.BeautifulSoup(index,'html.parser').select("#divActivityDetail")).find("多元") > 0 :
+    if str(bs4.BeautifulSoup(index,'html.parser').select("#divActivityDetail")).find("keyword") > 0 :
         print("https://portalx.yzu.edu.tw/PortalSocialVB/FPage/PageActivityDetail.aspx?Menu=Act&ActID="+activitycode[i])
         pos=str(bs4.BeautifulSoup(index,'html.parser').select("#divActivityDetail")).find("上限")+3
         up=""
